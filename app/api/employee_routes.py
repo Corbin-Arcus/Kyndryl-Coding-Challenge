@@ -6,7 +6,7 @@ from app.forms.update_employee_form import UpdateEmployeeForm
 employee_routes = Blueprint('employees', __name__)
 
 
-@employee_routes.route('all')
+@employee_routes.route('/all')
 def employees():
     employees = Employee.query.all()
     return{'employees': [employee.to_dict() for employee in employees]}

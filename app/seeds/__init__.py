@@ -2,6 +2,7 @@ from app.seeds.employees import seed_employees, undo_employees
 from flask.cli import AppGroup
 from .users import seed_users, undo_users
 from .employees import seed_employees, undo_employees
+from .schedules import seed_schedules, undo_schedules
 
 # Creates a seed group to hold our commands
 # So we can type `flask seed --help`
@@ -13,6 +14,7 @@ seed_commands = AppGroup('seed')
 def seed():
     seed_users()
     seed_employees()
+    seed_schedules()
 # Add other seed functions here
 
 
@@ -21,4 +23,5 @@ def seed():
 def undo():
     undo_users()
     undo_employees()
+    undo_schedules()
     # Add other undo functions here

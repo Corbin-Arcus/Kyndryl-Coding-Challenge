@@ -16,6 +16,6 @@ def seed_employees():
 
 
 def undo_employees():
-    db.session.execute('TRUNCATE empoyees RESTART IDENTITY CASCADE;')
+    db.session.execute('TRUNCATE employees RESTART IDENTITY CASCADE;')
     db.session.commit()
 

@@ -21,3 +21,16 @@ class Schedule(db.Model):
       secondary=employee_schedules,
       back_populates='schedules'
     )
+
+    def to_dict(self):
+        return {
+          "id": self.id,
+          "employee_id": self.employee_id,
+          "Monday": self.Monday,
+          "Tuesday": self.Tuesday,
+          "Wednesday": self.Wednesday,
+          "Thursday": self.Thursday,
+          "Friday": self.Friday,
+          "Saturday": self.Saturday,
+          "Sunday": self.Sunday
+        }
