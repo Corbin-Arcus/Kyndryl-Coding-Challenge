@@ -1,4 +1,6 @@
+from app.models.employee_schedule import Employee_Schedules
 from .db import db
+from .employee_schedule import employee_schedules, Employee_Schedules
 
 
 class Employee(db.Model):
@@ -9,6 +11,12 @@ class Employee(db.Model):
     email = db.Column(db.String(255), nullable=False)
     hours = db.Column(db.Float)
     current_employee = db.Column(db.Boolean)
+
+    schedules = db.relationship(
+      'Schedule',
+      secondary=employee_schedules,
+      back_populates='employees'
+    )
 
     def to_dict(self):
         return {

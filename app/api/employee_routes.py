@@ -6,6 +6,12 @@ from app.forms.update_employee_form import UpdateEmployeeForm
 employee_routes = Blueprint('employees', __name__)
 
 
+@employee_routes.route('all')
+def employees():
+    employees = Employee.query.all()
+    return{'employees': [employee.to_dict() for employee in employees]}
+
+
 @employee_routes.route('/', methods=['POST'])
 def new_employee():
     form = CreateEmployeeForm()
@@ -23,7 +29,7 @@ def new_employee():
         return new_employee.to_dict()
 
 
-@employee_routes.route('/<int:id>', methods=['PUT'])
+@employee_routes.route('/<int:id>', methods=['PATCH'])
 def update_employee(id):
     data = request.json
 
@@ -35,6 +41,13 @@ def update_employee(id):
     employee.email = data['email']
     employee.hours = data['hours']
     employee.current_hours = data['current_employee']
+    employee.works_monday = data['works_monday']
+    employee.works_tuesday = data['works_tuesday']
+    employee.works_wednesday = data['works_wednesday']
+    employee.works_thursday = data['works_thursday']
+    employee.works_friday = data['works_friday']
+    employee.works_saturday = data['works_saturday']
+    employee.works_sunday = data['works_sunday']
 
     db.session.commit()
 
