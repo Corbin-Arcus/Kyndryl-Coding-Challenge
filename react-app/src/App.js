@@ -9,6 +9,7 @@ import UsersList from "./components/UsersList";
 import User from "./components/User";
 import SplashPage from './components/SplashPage'
 import Calendar from "./components/Calendar";
+import CreateEmployeePage from "./components/CreateEmployeePage";
 import { authenticate } from "./store/session";
 
 function App() {
@@ -47,6 +48,9 @@ function App() {
           <SplashPage />
           <Calendar />
         </Route>
+        <Route path='/employees/new' exact={true}>
+            <CreateEmployeePage />
+          </Route>
       </Switch>
     </BrowserRouter>
   );
