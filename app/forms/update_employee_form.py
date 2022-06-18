@@ -4,9 +4,10 @@ from wtforms.validators import DataRequired
 
 
 class UpdateEmployeeForm(FlaskForm):
-    name = StringField('name', validators=[DataRequired()])
-    email = StringField('email', validators=[DataRequired()])
+    name = StringField('name')
+    email = StringField('email')
     hours = FloatField('hours')
+    hourly_wages = FloatField('hourly_wages')
     current_employee = BooleanField('current_employee')
     works_monday = BooleanField('works_monday')
     works_tuesday = BooleanField('works_tuesday')

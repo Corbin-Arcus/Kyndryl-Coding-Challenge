@@ -8,6 +8,7 @@ function CreateEmployeePage() {
   const dispatch = useDispatch();
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
+  const [hourly_wages, setHoury_wages] = useState(0)
   // const [hours, setHours] = useState(0)
   // const [currentEmployee, setCurrentEmployee] = useState(True)
   const [errors, setErrors] = useState([])
@@ -24,7 +25,7 @@ function CreateEmployeePage() {
     else {
       setErrors([])
       history.push('/')
-      dispatch(employeeActions.createAnEmployee(name, email))
+      dispatch(employeeActions.createAnEmployee(name, email, hourly_wages))
       .catch(async (res) => {
         const data = await res.json();
         if (data && data.errors.length > 0) setErrors(data.errors)
@@ -60,6 +61,18 @@ function CreateEmployeePage() {
             name='email'
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            required
+            />
+          </label>
+          <br />
+          <label>
+            What is the employee's hourly rate of pay?
+            <br />
+            <input
+            type='number'
+            name='hourly_wages'
+            value={hourly_wages}
+            onChange={(e) => setHoury_wages(e.target.value)}
             required
             />
           </label>

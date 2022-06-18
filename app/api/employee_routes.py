@@ -21,8 +21,9 @@ def new_employee():
     if form.validate_on_submit():
         name = form.data['name']
         email = form.data['email']
+        hourly_wages = form.data['hourly_wages']
 
-        new_employee = Employee(name=name, email=email, current_employee=True)
+        new_employee = Employee(name=name, email=email, hourly_wages=hourly_wages, current_employee=True)
 
         db.session.add(new_employee)
         db.session.commit()

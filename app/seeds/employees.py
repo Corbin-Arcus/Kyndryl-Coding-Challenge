@@ -3,10 +3,10 @@ from app.models import db, Employee
 
 def seed_employees():
     corbin = Employee(
-      name='Corbin Arcus', email='fake@fake.com', hours=40.0,
+      name='Corbin Arcus', email='fake@fake.com', hours=40.0, hourly_wages=40.0,
       current_employee=True)
     josephine = Employee(
-      name='Josephine Arcus', email='fake1@fake.com', hours=25.0,
+      name='Josephine Arcus', email='fake1@fake.com', hours=25.0, hourly_wages=25.5,
       current_employee=True)
 
     db.session.add(corbin)

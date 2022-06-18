@@ -10,6 +10,7 @@ class Employee(db.Model):
     name = db.Column(db.String(50), nullable=False)
     email = db.Column(db.String(255), nullable=False)
     hours = db.Column(db.Float)
+    hourly_wages = db.Column(db.Float)
     current_employee = db.Column(db.Boolean)
 
     schedules = db.relationship(
@@ -24,5 +25,6 @@ class Employee(db.Model):
           "name": self.name,
           "email": self.email,
           "hours": self.hours,
+          "hourly_wages": self.hourly_wages,
           "current_employee": self.current_employee
         }

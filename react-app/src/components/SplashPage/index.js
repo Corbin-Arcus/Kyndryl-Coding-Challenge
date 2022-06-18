@@ -3,6 +3,18 @@ import { useDispatch, useSelector } from 'react-redux';
 import * as employeeactions from '../../store/employee'
 import { Link } from 'react-router-dom';
 
+let net;
+let gross;
+
+function multiply(x,y){
+   gross =  x * y
+   return gross
+}
+
+function irs(gross){
+  return (gross - (gross * .25))
+}
+
 function SplashPage(){
   const dispatch = useDispatch()
   const employees = useSelector(state => state.employee.employees)
@@ -12,7 +24,7 @@ function SplashPage(){
     dispatch(employeeactions.getAllEmployees())
   },[dispatch])
 
-  console.log(employees)
+
   return(
     <div>
       <h1>Kyndryl Coding Assignment</h1>
@@ -22,6 +34,10 @@ function SplashPage(){
           <th>Email</th>
           <th>Hours</th>
           <th>Current Employee</th>
+          <th>Hourly Wages</th>
+          <th>Gross Pay</th>
+          <th>Taxes</th>
+          <th>Net Pay</th>
         </tr>
           {employees?.map(employee =>
             <tr>
@@ -29,6 +45,10 @@ function SplashPage(){
               <td>{employee.email}</td>
               <td>{employee.hours}</td>
               <td>{employee.current_employee ? 'True': 'False'}</td>
+              <td>{employee.hourly_wages}</td>
+              <td>{multiply(employee.hours, employee.hourly_wages)}</td>
+              <td>25%</td>
+              <td>{irs(gross)}</td>
             </tr>
             )}
       </table>

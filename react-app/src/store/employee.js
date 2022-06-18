@@ -24,7 +24,7 @@ const getEmployee = (employee) => {
 }
 
 
-export const createAnEmployee = (name, email) => async(dispatch) => {
+export const createAnEmployee = (name, email, hourly_wages) => async(dispatch) => {
   const res = await fetch('/api/employees/', {
     method: 'POST',
     headers: {
@@ -32,7 +32,8 @@ export const createAnEmployee = (name, email) => async(dispatch) => {
     },
     body: JSON.stringify({
       name,
-      email
+      email,
+      hourly_wages
     })
   })
 
