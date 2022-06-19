@@ -10,12 +10,15 @@ import User from "./components/User";
 import SplashPage from './components/SplashPage'
 import Calendar from "./components/Calendar";
 import CreateEmployeePage from "./components/CreateEmployeePage";
+import CreateSchedulePage from "./components/CreateSchedulePage";
 import { authenticate } from "./store/session";
 
 function App() {
   const user = useSelector(state => state.session.user)
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
+
+  const [hours, setHours] = useState(0)
 
   useEffect(() => {
     (async() => {
@@ -45,11 +48,14 @@ function App() {
           <User />
         </ProtectedRoute>
         <Route path="/" exact={true} >
-          <SplashPage />
-          <Calendar />
+          <SplashPage hours={hours} setHours={setHours}/>
+          <Calendar hours={hours} setHours={setHours} />
         </Route>
         <Route path='/employees/new' exact={true}>
             <CreateEmployeePage />
+          </Route>
+          <Route path='/schedules/new' exact={true}>
+            <CreateSchedulePage />
           </Route>
       </Switch>
     </BrowserRouter>

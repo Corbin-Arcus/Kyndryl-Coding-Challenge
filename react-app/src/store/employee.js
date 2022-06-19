@@ -54,7 +54,7 @@ export const createAnEmployee = (name, email, hourly_wages) => async(dispatch) =
 
 export const updateOneEmployee = (employeeId, name, email, hours, current_employee) => async(dispatch) => {
   const res = await fetch(`/api/employees/${employeeId}`, {
-    method: 'PUT',
+    method: 'PATCH',
     headers: {
       'Content-Type': 'application/json'
     },
@@ -78,6 +78,31 @@ export const updateOneEmployee = (employeeId, name, email, hours, current_employ
     return ['An error occurred. Please try again']
   }
 }
+
+export const updateOneEmployeeHours = (employeeId, hours) => async(dispatch) => {
+  const res = await fetch(`/api/employees/${employeeId}`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      hours
+    })
+  })
+  if (res.ok) {
+    const data = await res.json()
+    dispatch(updateEmployee(data))
+    return data
+  }
+  else if (res.status < 500) {
+    const data = await res.json()
+    if (data.errors) return data.errors
+  }
+  else {
+    return ['An error occurred. Please try again']
+  }
+}
+
 
 export const getAllEmployees = () => async (dispatch) => {
   const res = await fetch ('/api/employees/all', {

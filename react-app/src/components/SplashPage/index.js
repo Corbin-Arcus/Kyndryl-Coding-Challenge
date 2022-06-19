@@ -15,7 +15,7 @@ function irs(gross){
   return (gross - (gross * .25))
 }
 
-function SplashPage(){
+function SplashPage(props){
   const dispatch = useDispatch()
   const employees = useSelector(state => state.employee.employees)
 
@@ -23,7 +23,6 @@ function SplashPage(){
   useEffect(() => {
     dispatch(employeeactions.getAllEmployees())
   },[dispatch])
-
 
   return(
     <div>

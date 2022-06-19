@@ -28,9 +28,14 @@ def new_schedule():
         Saturday = form.data['Saturday']
         Sunday = form.data['Sunday']
 
-        new_schedule = Schedule(employee_id=employee_id, Monday=Monday,
-            Tuesday=Tuesday, Wednesday=Wednesday, Thursday=Thursday,
-            Friday=Friday, Saturday=Saturday, Sunday=Sunday)
+        new_schedule = Schedule(employee_id=employee_id,
+                                Monday=Monday,
+                                Tuesday=Tuesday,
+                                Wednesday=Wednesday,
+                                Thursday=Thursday,
+                                Friday=Friday,
+                                Saturday=Saturday,
+                                Sunday=Sunday)
 
         db.session.add(new_schedule)
         db.session.commit()

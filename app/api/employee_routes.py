@@ -23,7 +23,9 @@ def new_employee():
         email = form.data['email']
         hourly_wages = form.data['hourly_wages']
 
-        new_employee = Employee(name=name, email=email, hourly_wages=hourly_wages, current_employee=True)
+        new_employee = Employee(name=name, email=email,
+                                hourly_wages=hourly_wages,
+                                current_employee=True)
 
         db.session.add(new_employee)
         db.session.commit()
@@ -38,17 +40,23 @@ def update_employee(id):
 
     form = UpdateEmployeeForm()
 
-    employee.name = data['name']
-    employee.email = data['email']
+    employee.name = form.data['name']
+    employee.email = form.data['email']
+    employee.hours = form.data['hours']
+    employee.hourly_wages = form.data['hourly_wages']
+
+    db.session.commit()
+
+    return employee.to_dict()
+
+
+@employee_routes.route('/<int:id>', methods=['PATCH'])
+def update_employee_hours(id):
+    data = request.json
+
+    employee = Employee.query.get_or_404(id)
+
     employee.hours = data['hours']
-    employee.current_hours = data['current_employee']
-    employee.works_monday = data['works_monday']
-    employee.works_tuesday = data['works_tuesday']
-    employee.works_wednesday = data['works_wednesday']
-    employee.works_thursday = data['works_thursday']
-    employee.works_friday = data['works_friday']
-    employee.works_saturday = data['works_saturday']
-    employee.works_sunday = data['works_sunday']
 
     db.session.commit()
 
