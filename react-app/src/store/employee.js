@@ -52,16 +52,16 @@ export const createAnEmployee = (name, email, hourly_wages) => async(dispatch) =
 }
 
 
-export const updateOneEmployee = (employeeId, name, email, hours, current_employee) => async(dispatch) => {
+export const updateOneEmployee = (employeeId, name, email, hourly_wages, current_employee) => async(dispatch) => {
   const res = await fetch(`/api/employees/${employeeId}`, {
-    method: 'PATCH',
+    method: 'PUT',
     headers: {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
       name,
       email,
-      hours,
+      hourly_wages,
       current_employee
     })
   })

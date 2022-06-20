@@ -12,6 +12,7 @@ import Calendar from "./components/Calendar";
 import CreateEmployeePage from "./components/CreateEmployeePage";
 import CreateSchedulePage from "./components/CreateSchedulePage";
 import UpdateSchedulePage from "./components/UpdateSchedulePage";
+import UpdateEmployeePage from "./components/UpdateEmployeePage";
 import { authenticate } from "./store/session";
 
 function App() {
@@ -59,6 +60,9 @@ function App() {
           </Route>
           <Route path='/schedules/:id/edit'>
             <UpdateSchedulePage />
+          </Route>
+          <Route path='/employees/:id/edit'>
+            <UpdateEmployeePage />
           </Route>
       </Switch>
     </BrowserRouter>
