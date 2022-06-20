@@ -15,6 +15,7 @@ class Schedule(db.Model):
     Friday = db.Column(db.String)
     Saturday = db.Column(db.String)
     Sunday = db.Column(db.String)
+    total_hours = db.Column(db.Float)
 
     employees = db.relationship(
       'Employee',
@@ -32,5 +33,6 @@ class Schedule(db.Model):
           "Thursday": self.Thursday,
           "Friday": self.Friday,
           "Saturday": self.Saturday,
-          "Sunday": self.Sunday
+          "Sunday": self.Sunday,
+          "total_hours": self.total_hours
         }

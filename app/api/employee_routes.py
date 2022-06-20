@@ -38,19 +38,19 @@ def update_employee(id):
 
     employee = Employee.query.get_or_404(id)
 
-    form = UpdateEmployeeForm()
+    # form = UpdateEmployeeForm()
 
-    employee.name = form.data['name']
-    employee.email = form.data['email']
-    employee.hours = form.data['hours']
-    employee.hourly_wages = form.data['hourly_wages']
+    employee.name = data['name']
+    employee.email = data['email']
+    employee.hours = data['hours']
+    employee.hourly_wages = data['hourly_wages']
 
     db.session.commit()
 
     return employee.to_dict()
 
 
-@employee_routes.route('/<int:id>', methods=['PATCH'])
+@employee_routes.route('/hours/<int:id>', methods=['PUT'])
 def update_employee_hours(id):
     data = request.json
 
@@ -61,3 +61,5 @@ def update_employee_hours(id):
     db.session.commit()
 
     return employee.to_dict()
+
+

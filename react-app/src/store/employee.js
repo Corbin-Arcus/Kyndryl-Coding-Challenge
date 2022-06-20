@@ -80,8 +80,8 @@ export const updateOneEmployee = (employeeId, name, email, hours, current_employ
 }
 
 export const updateOneEmployeeHours = (employeeId, hours) => async(dispatch) => {
-  const res = await fetch(`/api/employees/${employeeId}`, {
-    method: 'PATCH',
+  const res = await fetch(`/api/employees/hours/${employeeId}`, {
+    method: 'PUT',
     headers: {
       'Content-Type': 'application/json'
     },
@@ -102,6 +102,7 @@ export const updateOneEmployeeHours = (employeeId, hours) => async(dispatch) => 
     return ['An error occurred. Please try again']
   }
 }
+
 
 
 export const getAllEmployees = () => async (dispatch) => {

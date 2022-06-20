@@ -10,7 +10,8 @@ def seed_schedules():
       Thursday='9 to 5',
       Friday='9 to 5',
       Saturday='--OFF--',
-      Sunday='--OFF--'
+      Sunday='--OFF--',
+      total_hours=0
     )
 
     db.session.add(s1)

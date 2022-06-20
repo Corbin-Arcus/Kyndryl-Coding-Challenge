@@ -2,6 +2,7 @@ from re import S
 from flask import Blueprint, jsonify, request
 from app.models import db, Schedule
 from app.forms.create_schedule_form import CreateScheduleForm
+from app.forms.update_schedule_form import UpdateScheduleForm
 
 schedule_routes = Blueprint('schedules', __name__)
 
@@ -40,5 +41,39 @@ def new_schedule():
         db.session.add(new_schedule)
         db.session.commit()
         return new_schedule.to_dict()
+
+
+@schedule_routes.route('/<int:id>/<int:hours>', methods=['PUT'])
+def update_schedule_hours(id, hours):
+    data = request.json
+
+    schedule = Schedule.query.get_or_404(id)
+
+    schedule.total_hours = hours
+
+    db.session.commit()
+
+    return schedule.to_dict()
+
+
+@schedule_routes.route('/<int:id>', methods=['PUT'])
+def update_schedule(id):
+    data = request.json
+
+    schedule = Schedule.query.get_or_404(id)
+
+    form = UpdateScheduleForm()
+
+    schedule.Monday = form.data['monday']
+    schedule.Tuesday = form.data['tuesday']
+    schedule.Wednesday = form.data['wednesday']
+    schedule.Thursday = form.data['thursday']
+    schedule.Friday = form.data['friday']
+    schedule.Saturday = form.data['saturday']
+    schedule.Sunday = form.data['sunday']
+
+    db.session.commit()
+
+    return schedule.to_dict()
 
 
