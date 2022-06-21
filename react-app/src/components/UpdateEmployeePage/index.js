@@ -8,11 +8,6 @@ import { useParams } from 'react-router-dom';
 function UpdateEmployeePage() {
   const history = useHistory()
   const dispatch = useDispatch();
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [hourly_wages, setHoury_wages] = useState(0)
-  const [current_employee, setCurrentEmployee] = useState(true)
-  const [errors, setErrors] = useState([])
 
   const buttonHandler = () => {
     setCurrentEmployee(current => !current)
@@ -46,6 +41,12 @@ function UpdateEmployeePage() {
   if(employees){
     employee = employees?.filter(employee => employee?.id == id)[0]
   }
+
+  const [name, setName] = useState(employee?.name)
+  const [email, setEmail] = useState(employee?.email)
+  const [hourly_wages, setHoury_wages] = useState(employee?.hourly_wages)
+  const [current_employee, setCurrentEmployee] = useState(employee?.current_employee)
+  const [errors, setErrors] = useState([])
 
   return (
     <>
