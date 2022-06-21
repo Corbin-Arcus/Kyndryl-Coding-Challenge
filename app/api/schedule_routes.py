@@ -43,8 +43,9 @@ def new_schedule():
                 filtered_list.append(time)
         hours = 0
         for times in filtered_list:
+            times = times.split('-')
             num1 = int(times[0])
-            num2 = int(times[2])
+            num2 = int(times[1])
             if num2 < num1:
                 num2 += 12
             hours += num2 - num1
@@ -95,8 +96,9 @@ def update_schedule(id):
             filtered_list.append(time)
     hours = 0
     for times in filtered_list:
+        times = times.split('-')
         num1 = int(times[0])
-        num2 = int(times[2])
+        num2 = int(times[1])
         if num2 < num1:
             num2 += 12
         hours += num2 - num1
