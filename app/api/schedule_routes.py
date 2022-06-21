@@ -1,4 +1,3 @@
-from re import S
 from flask import Blueprint, jsonify, request
 from app.models import db, Schedule
 from app.forms.create_schedule_form import CreateScheduleForm
@@ -29,6 +28,27 @@ def new_schedule():
         Saturday = form.data['Saturday']
         Sunday = form.data['Sunday']
 
+        my_list = []
+        my_list.append(Monday)
+        my_list.append(Tuesday)
+        my_list.append(Wednesday)
+        my_list.append(Thursday)
+        my_list.append(Friday)
+        my_list.append(Saturday)
+        my_list.append(Sunday)
+
+        filtered_list = []
+        for time in my_list:
+            if 'OFF' not in time:
+                filtered_list.append(time)
+        hours = 0
+        for times in filtered_list:
+            num1 = int(times[0])
+            num2 = int(times[2])
+            if num2 < num1:
+                num2 += 12
+            hours += num2 - num1
+
         new_schedule = Schedule(employee_id=employee_id,
                                 Monday=Monday,
                                 Tuesday=Tuesday,
@@ -36,24 +56,12 @@ def new_schedule():
                                 Thursday=Thursday,
                                 Friday=Friday,
                                 Saturday=Saturday,
-                                Sunday=Sunday)
+                                Sunday=Sunday,
+                                total_hours=hours)
 
         db.session.add(new_schedule)
         db.session.commit()
         return new_schedule.to_dict()
-
-
-@schedule_routes.route('/<int:id>/<int:hours>', methods=['PUT'])
-def update_schedule_hours(id, hours):
-    data = request.json
-
-    schedule = Schedule.query.get_or_404(id)
-
-    schedule.total_hours = hours
-
-    db.session.commit()
-
-    return schedule.to_dict()
 
 
 @schedule_routes.route('/<int:id>', methods=['PUT'])
@@ -72,8 +80,29 @@ def update_schedule(id):
     schedule.Saturday = form.data['saturday']
     schedule.Sunday = form.data['sunday']
 
+    my_list = []
+    my_list.append(form.data['monday'])
+    my_list.append(form.data['tuesday'])
+    my_list.append(form.data['wednesday'])
+    my_list.append(form.data['thursday'])
+    my_list.append(form.data['friday'])
+    my_list.append(form.data['saturday'])
+    my_list.append(form.data['sunday'])
+
+    filtered_list = []
+    for time in my_list:
+        if 'OFF' not in time:
+            filtered_list.append(time)
+    hours = 0
+    for times in filtered_list:
+        num1 = int(times[0])
+        num2 = int(times[2])
+        if num2 < num1:
+            num2 += 12
+        hours += num2 - num1
+
+    schedule.total_hours = hours
+
     db.session.commit()
 
     return schedule.to_dict()
-
-

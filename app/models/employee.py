@@ -1,6 +1,4 @@
-from app.models.employee_schedule import Employee_Schedules
 from .db import db
-from .employee_schedule import employee_schedules, Employee_Schedules
 
 
 class Employee(db.Model):
@@ -15,7 +13,6 @@ class Employee(db.Model):
 
     schedules = db.relationship(
       'Schedule',
-      secondary=employee_schedules,
       back_populates='employees'
     )
 

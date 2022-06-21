@@ -16,7 +16,7 @@ function irs(gross){
   return (gross - (gross * .25))
 }
 
-function SplashPage(props){
+function SplashPage(){
   const dispatch = useDispatch()
   const employees = useSelector(state => state.employee.employees)
   const schedules = useSelector(state => state.schedule.schedules)
@@ -25,9 +25,11 @@ function SplashPage(props){
     dispatch(employeeactions.getAllEmployees())
   },[dispatch])
 
+
   return(
     <div>
       <h1>Kyndryl Coding Assignment</h1>
+      <h3>By: Corbin Arcus</h3>
       <table>
         <tr>
           <th>Name</th>
@@ -43,12 +45,13 @@ function SplashPage(props){
             <tr>
               <td>{employee.name}</td>
               <td>{employee.email}</td>
-              <td>{schedules?.filter(schedule => schedule.employee_id == employee.id)[0]?.total_hours}</td>
+              <td>{employee.current_employee == true && schedules?.filter(schedule => schedule.employee_id == employee.id)[0]?.total_hours}</td>
               <td>{employee.current_employee ? 'True': 'False'}</td>
               <td>{employee.hourly_wages}</td>
               <td>{multiply(schedules?.filter(schedule => schedule.employee_id == employee.id)[0]?.total_hours, employee.hourly_wages)}</td>
               <td>25%</td>
               <td>{irs(multiply(schedules?.filter(schedule => schedule.employee_id == employee.id)[0]?.total_hours, employee.hourly_wages))}</td>
+              <Link to={`/employees/${employee.id}/edit`}><button>Update Employee</button></Link>
             </tr>
             )}
       </table>

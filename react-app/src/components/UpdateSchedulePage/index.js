@@ -8,14 +8,7 @@ import { useParams } from 'react-router-dom';
 function UpdateSchedulePage() {
   const history = useHistory()
   const dispatch = useDispatch();
-  const [monday, setMonday] = useState('')
-  const [tuesday, setTuesday] = useState('')
-  const [wednesday, setWednesday] = useState('')
-  const [thursday, setThursday] = useState('')
-  const [friday, setFriday] = useState('')
-  const [saturday, setSaturday] = useState('')
-  const [sunday, setSunday] = useState('')
-  const [errors, setErrors] = useState([])
+
 
 
   const schedules = useSelector(state => state.schedule.schedules)
@@ -27,6 +20,17 @@ function UpdateSchedulePage() {
   if(schedules){
    schedule = schedules?.filter(scheule => scheule?.id == scheduleId)[0]
   }
+
+  let schedule_id = schedule.id
+
+  const [monday, setMonday] = useState(schedule?.Monday)
+  const [tuesday, setTuesday] = useState(schedule?.Tuesday)
+  const [wednesday, setWednesday] = useState(schedule?.Wednesday)
+  const [thursday, setThursday] = useState(schedule?.Thursday)
+  const [friday, setFriday] = useState(schedule?.Friday)
+  const [saturday, setSaturday] = useState(schedule?.Saturday)
+  const [sunday, setSunday] = useState(schedule?.Sunday)
+  const [errors, setErrors] = useState([])
   const employee = employees?.filter(employee => employee?.id == schedule?.employee_id)[0]
 
   useEffect(() => {
@@ -35,22 +39,12 @@ function UpdateSchedulePage() {
   },[dispatch])
 
 
-    // useEffect(() => {
-    //   setMonday(schedule?.Monday)
-    //   setTuesday(schedule?.Tuesday)
-    //   setWednesday(schedule?.Wednesday)
-    //   setThursday(schedule?.Thursday)
-    //   setFriday(schedule?.Friday)
-    //   setSaturday(schedule?.Saturday)
-    //   setSunday(schedule?.Sunday)
-    // }, [dispatch])
-
-    const employee_id = employees?.filter(employee => employee?.id == schedule?.employee_id)[0]?.id
+    // const employee_id = employees?.filter(employee => employee?.id == schedule?.employee_id)[0]?.id
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+      e.preventDefault();
       history.push('/')
-       dispatch(scheduleActions.updateOneSchedule(employee_id, monday, tuesday, wednesday, thursday, friday, saturday, sunday))
+       dispatch(scheduleActions.updateOneSchedule(schedule_id, monday, tuesday, wednesday, thursday, friday, saturday, sunday))
       dispatch(scheduleActions.getAllSchedules())
   }
 

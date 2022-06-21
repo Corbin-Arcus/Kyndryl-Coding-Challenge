@@ -25,29 +25,6 @@ const updateSchedule = (schedule) => {
   }
 }
 
-export const updateScheduleHours = (id, hours) => async (dispatch) => {
-  const res = await fetch(`/api/schedules/${id}/${hours}`, {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      hours
-    })
-  })
-  if (res.ok) {
-    const data = await res.json()
-    dispatch(updateSchedule(data))
-    return data
-  }
-  else if (res.status < 500) {
-    const data = await res.json()
-    if (data.errors) return data.errors
-  }
-  else {
-    return ['An error occurred. Please try again']
-  }
-}
 
 export const updateOneSchedule = (scheduleId, monday, tuesday, wednesday, thursday, friday, saturday, sunday) =>
 async (dispatch) => {

@@ -1,6 +1,5 @@
 from sqlalchemy import ForeignKey
 from .db import db
-from .employee_schedule import employee_schedules, Employee_Schedules
 
 
 class Schedule(db.Model):
@@ -19,7 +18,6 @@ class Schedule(db.Model):
 
     employees = db.relationship(
       'Employee',
-      secondary=employee_schedules,
       back_populates='schedules'
     )
 

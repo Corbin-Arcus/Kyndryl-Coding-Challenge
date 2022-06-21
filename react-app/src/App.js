@@ -14,6 +14,7 @@ import CreateSchedulePage from "./components/CreateSchedulePage";
 import UpdateSchedulePage from "./components/UpdateSchedulePage";
 import UpdateEmployeePage from "./components/UpdateEmployeePage";
 import { authenticate } from "./store/session";
+import { Container } from './components/styles/Container.styled'
 
 function App() {
   const user = useSelector(state => state.session.user)
@@ -35,36 +36,38 @@ function App() {
   return (
     <BrowserRouter>
       <NavBar />
-      <Switch>
-        <Route path="/login" exact={true}>
-          <LoginForm />
-        </Route>
-        <Route path="/sign-up" exact={true}>
-          <SignUpForm />
-        </Route>
-        <ProtectedRoute path="/users" exact={true} >
-          <UsersList/>
-        </ProtectedRoute>
-        <ProtectedRoute path="/users/:userId" exact={true} >
-          <User />
-        </ProtectedRoute>
-        <Route path="/" exact={true} >
-          <SplashPage />
-          <Calendar />
-        </Route>
-        <Route path='/employees/new' exact={true}>
-            <CreateEmployeePage />
+      <Container>
+        <Switch>
+          <Route path="/login" exact={true}>
+            <LoginForm />
           </Route>
-          <Route path='/schedules/new' exact={true}>
-            <CreateSchedulePage />
+          <Route path="/sign-up" exact={true}>
+            <SignUpForm />
           </Route>
-          <Route path='/schedules/:id/edit'>
-            <UpdateSchedulePage />
+          <ProtectedRoute path="/users" exact={true} >
+            <UsersList/>
+          </ProtectedRoute>
+          <ProtectedRoute path="/users/:userId" exact={true} >
+            <User />
+          </ProtectedRoute>
+          <Route path="/" exact={true} >
+            <SplashPage />
+            <Calendar />
           </Route>
-          <Route path='/employees/:id/edit'>
-            <UpdateEmployeePage />
-          </Route>
-      </Switch>
+          <Route path='/employees/new' exact={true}>
+              <CreateEmployeePage />
+            </Route>
+            <Route path='/schedules/new' exact={true}>
+              <CreateSchedulePage />
+            </Route>
+            <Route path='/schedules/:id/edit'>
+              <UpdateSchedulePage />
+            </Route>
+            <Route path='/employees/:id/edit'>
+              <UpdateEmployeePage />
+            </Route>
+        </Switch>
+      </Container>
     </BrowserRouter>
   );
 }
