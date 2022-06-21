@@ -4,6 +4,7 @@ import * as employeeActions from '../../store/employee'
 import * as scheduleActions from '../../store/schedules'
 import { useHistory } from 'react-router';
 import { useParams } from 'react-router-dom';
+import {UpdateEmployeeContainer} from '../styles/UpdateEmployee.styled'
 
 function UpdateEmployeePage() {
   const history = useHistory()
@@ -49,7 +50,7 @@ function UpdateEmployeePage() {
   const [errors, setErrors] = useState([])
 
   return (
-    <>
+    <UpdateEmployeeContainer>
       <form onSubmit={handleSubmit} className='form'>
         {errors.length > 0 && <ul>
             {errors.map((error, idx) => <li key={idx}>{error}</li>)}
@@ -108,7 +109,7 @@ function UpdateEmployeePage() {
           <br />
           <button type='submit'>Update Employee</button>
       </form>
-    </>
+    </UpdateEmployeeContainer>
   )
 }
 

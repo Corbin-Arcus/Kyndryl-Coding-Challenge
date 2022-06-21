@@ -14,4 +14,18 @@ export const Container = styled.div`
   justify-content:center;
   align-items: center;
   flex-direction:column;
+
+  /* td{
+    padding-left: 25px;
+  }
+
+  tr{
+    padding: 10px;
+    border: 1px solid black;
+    border-collapse: collapse;
+  } */
+
+  th, td {
+  border: 1px solid black;
+}
 `

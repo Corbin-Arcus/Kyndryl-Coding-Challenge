@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import * as scheduleActions from '../../store/schedules'
 import * as employeeActions from '../../store/employee'
 import { useHistory } from 'react-router';
+import { CreateScheduleContainer } from '../styles/CreateSchedulePage.styled'
 
 function CreateSchedulePage() {
   const history = useHistory()
@@ -43,7 +44,7 @@ function CreateSchedulePage() {
 
 
   return (
-    <>
+    <CreateScheduleContainer>
       <form onSubmit={handleSubmit} class='form'>
         {errors.length > 0 && <ul>
             {errors.map((error, idx) => <li key={idx}>{error}</li>)}
@@ -135,7 +136,7 @@ function CreateSchedulePage() {
           <br />
           <button type='submit'>Create Schedule</button>
       </form>
-    </>
+    </CreateScheduleContainer>
   )
 }
 

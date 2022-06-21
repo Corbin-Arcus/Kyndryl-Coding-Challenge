@@ -30,6 +30,8 @@ function SplashPage(){
     <div>
       <h1>Kyndryl Coding Assignment</h1>
       <h3>By: Corbin Arcus</h3>
+      <br />
+      <h1>Payroll Report</h1>
       <table>
         <tr>
           <th>Name</th>

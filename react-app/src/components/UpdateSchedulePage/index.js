@@ -4,6 +4,7 @@ import * as scheduleActions from '../../store/schedules'
 import * as employeeActions from '../../store/employee'
 import { useHistory } from 'react-router';
 import { useParams } from 'react-router-dom';
+import {UpdateScheduleContainer} from '../styles/UpdateSchedule.styled'
 
 function UpdateSchedulePage() {
   const history = useHistory()
@@ -50,7 +51,7 @@ function UpdateSchedulePage() {
 
 
   return (
-    <>
+    <UpdateScheduleContainer>
       <form onSubmit={handleSubmit} class='form'>
         {errors.length > 0 && <ul>
             {errors.map((error, idx) => <li key={idx}>{error}</li>)}
@@ -136,7 +137,7 @@ function UpdateSchedulePage() {
           <br />
           <button type='submit'>Update Schedule</button>
       </form>
-    </>
+    </UpdateScheduleContainer>
   )
 }
 

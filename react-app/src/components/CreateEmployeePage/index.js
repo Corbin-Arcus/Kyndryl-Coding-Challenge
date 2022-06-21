@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as employeeActions from '../../store/employee'
 import { useHistory } from 'react-router';
+import { CreateEmployeeContainer } from '../styles/CreateEmployee.styled'
 
 function CreateEmployeePage() {
   const history = useHistory()
@@ -35,7 +36,7 @@ function CreateEmployeePage() {
   }
 
   return (
-    <>
+    <CreateEmployeeContainer>
       <form onSubmit={handleSubmit} className='form'>
         {errors.length > 0 && <ul>
             {errors.map((error, idx) => <li key={idx}>{error}</li>)}
@@ -79,7 +80,7 @@ function CreateEmployeePage() {
           <br />
           <button type='submit'>Create Employee</button>
       </form>
-    </>
+    </CreateEmployeeContainer>
   )
 }
 
